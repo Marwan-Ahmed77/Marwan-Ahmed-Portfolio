@@ -1,14 +1,23 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+<<<<<<< HEAD
+  content: ['./app/**/*.{ts,tsx}','./components/**/*.{ts,tsx}','./lib/**/*.{ts,tsx}'],
+=======
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+>>>>>>> 0fb18d05e32b70b988aee43fffd5a801e4105555
   theme: {
     extend: {
       fontFamily: {
         display: ['var(--font-display)'],
+<<<<<<< HEAD
+        sans: ['var(--font-sans)'],
+        mono: ['var(--font-mono)'],
+      },
+=======
         body: ['var(--font-body)'],
         mono: ['var(--font-mono)'],
       },
@@ -46,6 +55,7 @@ module.exports = {
           '100%': { width: '100%' },
         },
       },
+>>>>>>> 0fb18d05e32b70b988aee43fffd5a801e4105555
     },
   },
   plugins: [],

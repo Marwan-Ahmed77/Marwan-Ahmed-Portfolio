@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
+  "name": "marwan-ahmed-portfolio",
+  "version": "2.0.0",
+=======
   "name": "marwan-portfolio",
   "version": "0.1.0",
+>>>>>>> 0fb18d05e32b70b988aee43fffd5a801e4105555
   "private": true,
   "scripts": {
     "dev": "next dev",
