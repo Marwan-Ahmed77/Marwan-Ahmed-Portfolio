@@ -1,5 +1,8 @@
 'use client'
+<<<<<<< HEAD
+=======
 
+>>>>>>> 0fb18d05e32b70b988aee43fffd5a801e4105555
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
 import About from '@/components/About'
