@@ -1,4 +1,10 @@
 'use client'
+<<<<<<< HEAD
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { expertise } from '@/lib/data'
+import { fadeUp, fadeIn } from '@/lib/motion'
+=======
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
@@ -47,12 +53,69 @@ const areas = [
     desc: 'My development background enables me to evaluate technical approaches, collaborate effectively with engineering teams, and deliver custom solutions other consultants must outsource.',
   },
 ]
+>>>>>>> 0fb18d05e32b70b988aee43fffd5a801e4105555
 
 export default function Expertise() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
 
   return (
+<<<<<<< HEAD
+    <section id="expertise" className="section" ref={ref}
+      style={{ background: 'var(--bg-raised)', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)', position: 'relative', overflow: 'hidden' }}>
+      {/* Glow */}
+      <div style={{ position: 'absolute', top: '50%', right: '-100px', width: 400, height: 400, borderRadius: '50%', background: 'var(--gold-glow)', filter: 'blur(80px)', pointerEvents: 'none', transform: 'translateY(-50%)' }} />
+
+      <div className="container">
+        {/* Header */}
+        <div className="section-header">
+          <motion.div custom={0} variants={fadeUp} initial="hidden" animate={inView ? 'show' : 'hidden'}>
+            <div className="t-label" style={{ marginBottom: 16 }}>Core Expertise</div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px 48px', alignItems: 'flex-end', justifyContent: 'space-between' }}>
+              <h2 className="t-h1">What I bring<br /><span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>to every project</span></h2>
+              <p className="t-body" style={{ maxWidth: 320, fontSize: '0.9rem' }}>
+                Six interconnected capabilities that cover every dimension of a successful Oracle HCM engagement.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 1, background: 'var(--border-subtle)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--r-md)', overflow: 'hidden' }}>
+          {expertise.map((area, i) => (
+            <motion.div key={area.n}
+              custom={i} variants={fadeIn} initial="hidden" animate={inView ? 'show' : 'hidden'}
+              style={{
+                background: 'var(--bg-base)', padding: 'clamp(24px, 3vw, 36px)',
+                transition: 'background 0.3s ease',
+                cursor: 'default',
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.background = 'var(--bg-overlay)'
+                const line = (e.currentTarget as HTMLElement).querySelector('.expand-line') as HTMLElement | null
+                if (line) line.style.width = '40px'
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.background = 'var(--bg-base)'
+                const line = (e.currentTarget as HTMLElement).querySelector('.expand-line') as HTMLElement | null
+                if (line) line.style.width = '24px'
+              }}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
+                <span className="t-mono" style={{ color: 'var(--gold)', opacity: 0.5, fontSize: '0.72rem' }}>{area.n}</span>
+                <div style={{ width: 24, height: 1, background: 'var(--gold-border)', marginTop: 8, transition: 'width 0.4s ease' }} className="expand-line" />
+              </div>
+
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.45rem', fontWeight: 500, marginBottom: 4 }}>{area.title}</h3>
+              <div className="t-label" style={{ fontSize: '0.58rem', marginBottom: 12 }}>{area.sub}</div>
+              <p className="t-small" style={{ marginBottom: 20, lineHeight: 1.7 }}>{area.desc}</p>
+
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                {area.items.map(item => (
+                  <li key={item} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'var(--gold)', opacity: 0.5, flexShrink: 0 }} />
+                    <span className="t-xs" style={{ color: 'var(--text-secondary)' }}>{item}</span>
+=======
     <section id="expertise" ref={ref} className="py-28 relative bg-[var(--surface)]/30">
       {/* Background texture */}
       <div className="absolute inset-0 pointer-events-none"
@@ -106,13 +169,32 @@ export default function Expertise() {
                   <li key={s} className="flex items-center gap-2 font-body text-xs text-[var(--text-secondary)]">
                     <span className="w-1 h-1 rounded-full bg-[var(--gold)]/40 shrink-0" />
                     {s}
+>>>>>>> 0fb18d05e32b70b988aee43fffd5a801e4105555
                   </li>
                 ))}
               </ul>
             </motion.div>
           ))}
         </div>
+<<<<<<< HEAD
+
+        {/* Skills strip */}
+        <motion.div custom={7} variants={fadeUp} initial="hidden" animate={inView ? 'show' : 'hidden'}
+          style={{ marginTop: 48, padding: '28px 32px', background: 'var(--bg-overlay)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--r-md)' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px 48px', alignItems: 'center' }}>
+            <div className="t-label" style={{ flexShrink: 0 }}>Oracle HCM Modules</div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+              {['Core HR', 'Recruiting', 'Absence', 'Payroll', 'Performance', 'Talent', 'OTL', 'Visual Builder', 'Redwood', 'OTBI', 'BI Publisher', 'HDL'].map(m => (
+                <span key={m} className="chip">{m}</span>
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
+
+=======
+      </div>
+>>>>>>> 0fb18d05e32b70b988aee43fffd5a801e4105555
     </section>
   )
 }

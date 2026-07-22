@@ -1,4 +1,10 @@
 'use client'
+<<<<<<< HEAD
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { experience, education } from '@/lib/data'
+import { fadeUp, slideLeft } from '@/lib/motion'
+=======
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
@@ -72,12 +78,139 @@ const typeColor: Record<string, string> = {
   Parallel: '#7c9e7a',
   Supporting: '#4a90d9',
 }
+>>>>>>> 0fb18d05e32b70b988aee43fffd5a801e4105555
 
 export default function Timeline() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
 
   return (
+<<<<<<< HEAD
+    <section id="experience" className="section" ref={ref}
+      style={{ background: 'var(--bg-raised)', borderTop: '1px solid var(--border-subtle)' }}>
+      <div className="container">
+        {/* Header */}
+        <div className="section-header">
+          <motion.div custom={0} variants={fadeUp} initial="hidden" animate={inView ? 'show' : 'hidden'}>
+            <div className="t-label" style={{ marginBottom: 16 }}>Experience</div>
+            <h2 className="t-h1">
+              A career built<br />
+              <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>at the intersection</span>
+            </h2>
+          </motion.div>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 280px', gap: 40, alignItems: 'start' }} className="timeline-layout">
+
+          {/* Timeline entries */}
+          <div style={{ position: 'relative' }}>
+            {/* Vertical line */}
+            <div style={{ position: 'absolute', left: 4, top: 8, bottom: 8, width: 1, background: 'linear-gradient(to bottom, var(--gold-border), var(--border-subtle) 80%, transparent)' }} />
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+              {experience.map((exp, i) => (
+                <motion.div key={i} custom={i} variants={slideLeft} initial="hidden" animate={inView ? 'show' : 'hidden'}
+                  className="timeline-entry"
+                  style={{ display: 'flex', gap: 28, cursor: 'default' }}>
+
+                  {/* Dot */}
+                  <div style={{ paddingTop: 22, flexShrink: 0 }}>
+                    <div className="timeline-dot" style={{ borderColor: exp.color }} />
+                  </div>
+
+                  {/* Card */}
+                  <div className="card" style={{ flex: 1, padding: 'clamp(18px, 2.5vw, 28px)', marginBottom: 12 }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 12, alignItems: 'center' }}>
+                      <span style={{
+                        fontFamily: 'var(--font-mono)', fontSize: '0.62rem', padding: '3px 9px',
+                        borderRadius: 'var(--r-xs)', border: `1px solid ${exp.color}55`,
+                        color: exp.color, background: exp.color + '12',
+                      }}>{exp.badge}</span>
+                      <span className="t-mono" style={{ color: 'var(--text-tertiary)', fontSize: '0.72rem' }}>{exp.period}</span>
+                      {exp.type === 'Primary' && (
+                        <span className="chip chip-dim" style={{ fontSize: '0.58rem' }}>Primary Role</span>
+                      )}
+                    </div>
+
+                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 500, marginBottom: 4 }}>
+                      {exp.role}
+                    </h3>
+                    <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.82rem', color: 'var(--gold)', fontWeight: 500, marginBottom: 4 }}>
+                      {exp.company}
+                    </div>
+                    <div className="t-xs" style={{ marginBottom: 14 }}>{exp.location}</div>
+
+                    <p className="t-small" style={{ marginBottom: 14, lineHeight: 1.7, color: 'var(--text-secondary)' }}>
+                      {exp.summary}
+                    </p>
+
+                    <ul style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px 16px' }} className="exp-list">
+                      {exp.highlights.map((h, j) => (
+                        <li key={j} style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+                          <span style={{ width: 4, height: 4, borderRadius: '50%', background: exp.color, opacity: 0.6, flexShrink: 0, marginTop: 7 }} />
+                          <span className="t-xs" style={{ lineHeight: 1.6, color: 'var(--text-secondary)' }}>{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Sidebar: Education + Skills */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            {/* Education card */}
+            <motion.div custom={1} variants={fadeUp} initial="hidden" animate={inView ? 'show' : 'hidden'}
+              style={{
+                background: 'var(--bg-overlay)', border: '1px solid var(--gold-border)',
+                borderRadius: 'var(--r-md)', padding: 24,
+              }}>
+              <div className="t-label" style={{ marginBottom: 16 }}>Education</div>
+              <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', fontWeight: 500, marginBottom: 6, color: 'var(--text-primary)' }}>
+                {education.degree}
+              </h4>
+              <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', color: 'var(--gold)', marginBottom: 6 }}>
+                {education.university}
+              </div>
+              <div className="t-xs" style={{ marginBottom: 16 }}>{education.gpa} · {education.year}</div>
+              <div className="divider" style={{ marginBottom: 16 }} />
+              <div className="t-label" style={{ fontSize: '0.58rem', marginBottom: 10 }}>Activities</div>
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                {education.activities.map(a => (
+                  <li key={a} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'var(--gold)', flexShrink: 0, opacity: 0.6 }} />
+                    <span className="t-xs">{a}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Quick stats */}
+            <motion.div custom={2} variants={fadeUp} initial="hidden" animate={inView ? 'show' : 'hidden'}
+              style={{ background: 'var(--bg-overlay)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--r-md)', padding: 24 }}>
+              <div className="t-label" style={{ marginBottom: 16 }}>At a Glance</div>
+              {[
+                { k: 'Methodology', v: 'OUM + Agile' },
+                { k: 'Location', v: 'New Cairo, Egypt' },
+                { k: 'Available', v: 'Open to Projects' },
+                { k: 'Languages', v: 'Arabic (Native) · English (Pro)' },
+              ].map(item => (
+                <div key={item.k} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', padding: '8px 0', borderBottom: '1px solid var(--border-subtle)' }}>
+                  <span className="t-xs">{item.k}</span>
+                  <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: 'var(--text-primary)', textAlign: 'right', maxWidth: '55%' }}>{item.v}</span>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      <style>{`
+        @media (max-width: 900px) { .timeline-layout { grid-template-columns: 1fr !important; } }
+        @media (max-width: 600px) { .exp-list { grid-template-columns: 1fr !important; } }
+      `}</style>
+=======
     <section id="experience" ref={ref} className="py-28 relative bg-[var(--surface)]/20">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
@@ -172,6 +305,7 @@ export default function Timeline() {
           </div>
         </motion.div>
       </div>
+>>>>>>> 0fb18d05e32b70b988aee43fffd5a801e4105555
     </section>
   )
 }

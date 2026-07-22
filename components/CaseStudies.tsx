@@ -1,4 +1,10 @@
 'use client'
+<<<<<<< HEAD
+import { useState, useRef } from 'react'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { caseStudies } from '@/lib/data'
+import { fadeUp } from '@/lib/motion'
+=======
 
 import { useState, useRef } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
@@ -60,11 +66,52 @@ const cases = [
     color: '#7c9e7a',
   },
 ]
+>>>>>>> 0fb18d05e32b70b988aee43fffd5a801e4105555
 
 export default function CaseStudies() {
   const [active, setActive] = useState(0)
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
+<<<<<<< HEAD
+  const cs = caseStudies[active]
+
+  return (
+    <section id="work" className="section" ref={ref}>
+      <div className="container">
+        {/* Header */}
+        <div className="section-header">
+          <motion.div custom={0} variants={fadeUp} initial="hidden" animate={inView ? 'show' : 'hidden'}>
+            <div className="t-label" style={{ marginBottom: 16 }}>Case Studies</div>
+            <h2 className="t-h1">
+              Engagements that<br />
+              <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>delivered results</span>
+            </h2>
+          </motion.div>
+        </div>
+
+        {/* Tab selector */}
+        <motion.div custom={1} variants={fadeUp} initial="hidden" animate={inView ? 'show' : 'hidden'}
+          style={{ display: 'grid', gridTemplateColumns: `repeat(${caseStudies.length}, 1fr)`, gap: 8, marginBottom: 40 }}
+          className="case-tabs">
+          {caseStudies.map((c, i) => (
+            <button key={c.id} onClick={() => setActive(i)}
+              style={{
+                textAlign: 'left', padding: '18px 22px',
+                background: active === i ? 'var(--bg-overlay)' : 'var(--bg-raised)',
+                border: `1px solid ${active === i ? c.color + '50' : 'var(--border-subtle)'}`,
+                borderRadius: 'var(--r-md)', cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                boxShadow: active === i ? `0 0 24px ${c.color}12` : 'none',
+              }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', color: active === i ? c.color : 'var(--text-tertiary)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 6 }}>
+                {c.tag}
+              </div>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 500, color: active === i ? 'var(--text-primary)' : 'var(--text-secondary)' }}>
+                {c.client}
+              </div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.62rem', color: 'var(--text-tertiary)', marginTop: 4 }}>
+                {c.period}
+=======
 
   const c = cases[active]
 
@@ -109,11 +156,68 @@ export default function CaseStudies() {
               </div>
               <div className={`font-body text-sm font-medium ${active === i ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)]'}`}>
                 {cs.client}
+>>>>>>> 0fb18d05e32b70b988aee43fffd5a801e4105555
               </div>
             </button>
           ))}
         </motion.div>
 
+<<<<<<< HEAD
+        {/* Detail panel */}
+        <AnimatePresence mode="wait">
+          <motion.div key={active}
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: 24, alignItems: 'start' }}
+            className="case-detail">
+
+            {/* Main */}
+            <div style={{ background: 'var(--bg-raised)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--r-lg)', padding: 'clamp(24px, 4vw, 40px)' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 24 }}>
+                <span className="chip" style={{ borderColor: cs.color + '60', color: cs.color }}>{cs.tag}</span>
+                <span className="chip chip-dim">{cs.location}</span>
+                <span className="chip chip-dim">{cs.period}</span>
+              </div>
+
+              <h3 className="t-h2" style={{ marginBottom: 28 }}>{cs.title}</h3>
+
+              <div style={{ display: 'grid', gap: 24 }}>
+                <div>
+                  <div className="t-label" style={{ marginBottom: 10, color: cs.color }}>The Challenge</div>
+                  <p className="t-body" style={{ fontSize: '0.9rem' }}>{cs.problem}</p>
+                </div>
+                <div style={{ height: 1, background: 'var(--border-subtle)' }} />
+                <div>
+                  <div className="t-label" style={{ marginBottom: 10, color: cs.color }}>The Solution</div>
+                  <p className="t-body" style={{ fontSize: '0.9rem' }}>{cs.solution}</p>
+                </div>
+              </div>
+
+              <div style={{ marginTop: 28, display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                {cs.tools.map(t => <span key={t} className="chip chip-dim">{t}</span>)}
+              </div>
+            </div>
+
+            {/* Impact sidebar */}
+            <div style={{
+              background: 'var(--bg-overlay)', border: `1px solid ${cs.color}30`,
+              borderRadius: 'var(--r-lg)', padding: 28, height: '100%',
+            }}>
+              <div className="t-label" style={{ marginBottom: 20, color: cs.color }}>Business Impact</div>
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+                {cs.impact.map((item, i) => (
+                  <motion.li key={i}
+                    initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.08 + 0.2 }}
+                    style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+                    <div style={{ width: 20, height: 20, borderRadius: '50%', background: cs.color + '25', border: `1px solid ${cs.color}50`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>
+                      <span style={{ fontSize: '0.6rem', color: cs.color, fontWeight: 700 }}>✓</span>
+                    </div>
+                    <span className="t-small" style={{ lineHeight: 1.6 }}>{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
+=======
         {/* Case study detail */}
         <AnimatePresence mode="wait">
           <motion.div
@@ -183,10 +287,19 @@ export default function CaseStudies() {
                   ))}
                 </ul>
               </div>
+>>>>>>> 0fb18d05e32b70b988aee43fffd5a801e4105555
             </div>
           </motion.div>
         </AnimatePresence>
       </div>
+<<<<<<< HEAD
+
+      <style>{`
+        @media (max-width: 900px) { .case-tabs { grid-template-columns: 1fr !important; } .case-detail { grid-template-columns: 1fr !important; } }
+        @media (max-width: 767px) { .case-tabs { grid-template-columns: 1fr !important; } }
+      `}</style>
+=======
+>>>>>>> 0fb18d05e32b70b988aee43fffd5a801e4105555
     </section>
   )
 }
